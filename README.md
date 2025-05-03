@@ -1,90 +1,39 @@
 # 🚗 Dehazing and YOLOv8 Object Detection
 
-A lightweight, real-time system that enhances foggy dashcam footage and detects road objects using YOLOv8.
+A lightweight, real-time system for enhancing foggy dashcam footage and detecting road objects using YOLOv8.
+
+Now with support for the **D2-City dataset** for large-scale urban scene analysis.
+
+---
 
 ## 🎯 Objective
 
-This project aims to improve safety in autonomous and surveillance systems under poor visibility conditions by:
-- Enhancing foggy dashcam footage using CLAHE-based dehazing
-- Detecting objects like cars, buses, trucks, and potholes using YOLOv8
-- Comparing detection accuracy between original and dehazed frames
+Improve the reliability of autonomous vehicles and traffic surveillance under poor visibility by:
+- Enhancing contrast in foggy frames using CLAHE-based dehazing [@clahe]
+- Detecting objects like cars, buses, trucks, and potholes using YOLOv8 [@yolov8]
+- Comparing detection performance between raw and dehazed frames
+
+---
 
 ## 🔧 Pipeline Overview
 
-1. **Video Input** — Load real-world foggy dashcam footage
-2. **Dehazing with CLAHE** — Enhance image contrast to improve visibility
-3. **Object Detection** — Use YOLOv8 for detecting target classes
-4. **Side-by-Side Comparison** — Show detections on both original & dehazed frames
-5. **Detection Count Analysis** — Count & compare detections frame-by-frame
+1. **Video Input** — Load dashcam footage (supports custom videos + D2-City)
+2. **CLAHE Dehazing** — Boost contrast for better visibility [@clahe_original]
+3. **YOLOv8 Detection** — Real-time object detection [@yolov8]
+4. **Side-by-Side Visualization** — Compare detections on raw vs dehazed frames
+5. **Detection Analysis** — Count and evaluate object detections frame-by-frame
+
+---
 
 ## 📦 Dependencies
 
-- OpenCV
-- NumPy
-- Ultralytics (YOLOv8)
-- Matplotlib
-- Pandas
+- `OpenCV` [@opencv]
+- `NumPy`
+- `Ultralytics` (YOLOv8) [@ultralytics]
+- `Matplotlib`
+- `Pandas`
 
-## 🛠️ Techniques Used
+Install with:
 
-- **CLAHE (Contrast Limited Adaptive Histogram Equalization)** for dehazing
-- **YOLOv8** pre-trained model (via Ultralytics) for object detection
-- **OpenCV + Matplotlib** for video frame handling and visualization
-
-## 📊 Performance Metrics
-
-Based on evaluation results:
-- Average Raw Detections/Frame: 564.64
-- Average Dehazed Detections/Frame: 578.09
-- Detection Gain: 2.38%
-
-### Detailed Metrics:
-- Precision: 0.9965
-- Recall: 0.9533
-- F1 Score: 0.9744
-
-## 🚀 Usage
-
-1. Install dependencies:
 ```bash
 pip install -r requirements.txt
-```
-
-2. Run the main pipeline:
-```python
-from main import process_all_videos
-
-# Process videos in a folder
-video_folder_path = "dataset1"
-results = process_all_videos(video_folder_path, max_frames=20, save_visuals=True)
-```
-
-## 📝 Features
-
-- Multiple dehazing methods available:
-  - CLAHE (default)
-  - Gamma Correction
-  - Brightness/Contrast Adjustment
-  - Histogram Equalization
-  - Dark Channel Prior
-
-- Target object classes:
-  - Cars
-  - Buses
-  - Trucks
-  - Potholes
-
-## 📈 Results
-
-The system shows improved detection rates in dehazed frames compared to original foggy footage, with:
-- Increased detection accuracy
-- Better visibility of road objects
-- Real-time processing capabilities
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
